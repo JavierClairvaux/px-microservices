@@ -19,7 +19,7 @@ kubectl get service locust-external
 
 # Run memeater
 ```
-kubectl exec <pod name> -- ./memeate 2000
+kubectl exec <pod name> -- ./memeater 2000
 ```
 
 # Run cpu-burner
