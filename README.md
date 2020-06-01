@@ -17,12 +17,12 @@ kubectl get service frontend-external
 kubectl get service locust-external
 ```
 
-#Run memeater
+# Run memeater
 ```
 kubectl exec <pod name> -- ./memeate 2000
 ```
 
-#Run cpu-burner
+# Run cpu-burner
 ```
 kubectl exec <pod name> -- ./cpu-burner
 ```
