@@ -12,9 +12,9 @@ kubectl apply -f kubernetes-manifests.yaml
 kubectl get service frontend-external
 ```
 
-# Get Locust web UI adress
+# Change Locust number of users and hatch rate
 ```
-kubectl get service locust-external
+kubectl exec <locust pod name> -- ./locust_updater.sh <number of users> <hatch rate>
 ```
 
 # Run memeater
@@ -26,6 +26,14 @@ kubectl exec <pod name> -- ./memeater 2000
 ```
 kubectl exec <pod name> -- ./cpu-burner
 ```
+
+# To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
+```
+env:
+- name: LATENCY
+  value: "true"
+```
+When this variable is set to true a synthetic latency is going to be caused when you make a GET request to the "/" and "cart" as well as when a POST request is made to "/cart/checkout" and the country is equal to Mexico or United Stated
 
 This k8s manifest uses a customized version of [Google's Product Catalog Service](https://github.com/GoogleCloudPlatform/microservices-demo/tree/master/src/productcatalogservice) which can be found [here](https://github.com/JavierClairvaux/px-productcatalogservice).
 
