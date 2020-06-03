@@ -2,27 +2,52 @@
 
 Container based on [Google's microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo)
 
-## Run demo
+## Instructions
+
+### Create a k8s cluster on GKS
+```
+gcloud container clusters create pixie-demo --min-nodes=1 --max-nodes=1 --num-nodes=2 --zone=us-central1-a -m n1-standard-4
+```
+
+### Update kubectl config
+```
+gcloud container clusters get-credentials pixie-demo --zone=us-central1-a
+```
+
+### Deploy pixie!
+```
+px deploy
+```
+
+### Run demo
 ```
 kubectl apply -f kubernetes-manifests.yaml
 ```
 
-## Get front end adress
+### Get front end adress
 ```
 kubectl get service frontend-external
 ```
 
-## Change Locust number of users and hatch rate
+### Run pixie scripts!
+```
+px run px/service_stats
+px run px/node_stats
+px run px/service_memory
+```
+Alternatively you can see the metrics on [here](https://work.withpixie.ai/live)
+
+### Change Locust number of users and hatch rate
 ```
 kubectl exec <locust pod name> -- ./locust_updater.sh <number of users> <hatch rate>
 ```
 
-## Run memeater
+### Run memeater
 ```
 kubectl exec <pod name> -- ./memeater 2000
 ```
 
-## Run cpu-burner
+### Run cpu-burner
 ```
 kubectl exec <pod name> -- ./cpu-burner
 ```
