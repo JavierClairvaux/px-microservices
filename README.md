@@ -52,7 +52,7 @@ kubectl exec <pod name> -- ./memeater 2000
 kubectl exec <pod name> -- ./cpu-burner
 ```
 
-### To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
+#### To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
 ```
 env:
 - name: LATENCY
