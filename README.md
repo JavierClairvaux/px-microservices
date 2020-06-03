@@ -58,7 +58,7 @@ env:
 - name: LATENCY
   value: "true"
 ```
-When this variable is set to true a synthetic latency is going to be caused when you make a GET request to the "/" and "cart" as well as when a POST request is made to "/cart/checkout" and the country is equal to Mexico or United Stated
+When this variable is set to true a synthetic latency is going to be caused when you make a GET request to the "/" and "cart" as well as when a POST request is made to "/cart/checkout" and the country is equal to Mexico or United States.
 
 This k8s manifest uses a customized version of [Google's Product Catalog Service](https://github.com/GoogleCloudPlatform/microservices-demo/tree/master/src/productcatalogservice) which can be found [here](https://github.com/JavierClairvaux/px-productcatalogservice).
 
