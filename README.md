@@ -1,33 +1,33 @@
-### px-microservices
+# px-microservices
 
 Container based on [Google's microservices demo](https://github.com/GoogleCloudPlatform/microservices-demo)
 
-#Run demo
+## Run demo
 ```
 kubectl apply -f kubernetes-manifests.yaml
 ```
 
-# Get front end adress
+## Get front end adress
 ```
 kubectl get service frontend-external
 ```
 
-# Change Locust number of users and hatch rate
+## Change Locust number of users and hatch rate
 ```
 kubectl exec <locust pod name> -- ./locust_updater.sh <number of users> <hatch rate>
 ```
 
-# Run memeater
+## Run memeater
 ```
 kubectl exec <pod name> -- ./memeater 2000
 ```
 
-# Run cpu-burner
+## Run cpu-burner
 ```
 kubectl exec <pod name> -- ./cpu-burner
 ```
 
-# To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
+### To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
 ```
 env:
 - name: LATENCY
