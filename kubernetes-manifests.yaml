@@ -215,7 +215,8 @@ spec:
     spec:
       containers:
         - name: server
-          image: gcr.io/google-samples/microservices-demo/frontend:v0.2.0
+          #image: gcr.io/google-samples/microservices-demo/frontend:v0.2.0
+          image: javier1/px-frontend:0.1
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -253,6 +254,8 @@ spec:
             value: "adservice:9555"
           - name: ENV_PLATFORM
             value: "gcp"
+          - name: LATENCY
+            value: "true"
           # - name: DISABLE_TRACING
           #   value: "1"
           # - name: DISABLE_PROFILER
@@ -710,7 +713,7 @@ spec:
     spec:
       containers:
       - name: locustloadgen
-        image: javier1/px-locust
+        image: javier1/px-locust:latest
         env:
           - name: FRONTEND_ADDR
             value: "frontend:80"
