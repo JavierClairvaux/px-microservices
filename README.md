@@ -44,12 +44,12 @@ kubectl exec <locust pod name> -- ./locust_updater.sh <number of users> <hatch r
 
 ### Run memeater
 ```
-kubectl exec <pod name> -- ./memeater 2000
+kubectl exec <product catalog service container> -- ./memeater 2000
 ```
 
 ### Run cpu-burner
 ```
-kubectl exec <pod name> -- ./cpu-burner
+kubectl exec <product catalog service container> -- ./cpu-burner
 ```
 
 #### To activate latencies on spescific enpoints and requests, it is necessary to set the LATENCY environment variable as true on the frontend container like so:
