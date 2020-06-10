@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-      name: userwithcare
+      name: usewithcare
 spec:
   type: ClusterIP
   selector:
-    app: userwithcare
+    app: usewithcare
   ports:
   - name: webui
     port: 80
@@ -15,15 +15,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: userwithcare
+  name: usewithcare
 spec:
   selector:
     matchLabels:
-      app: userwithcare
+      app: usewithcare
   template:
     metadata:
       labels:
-        app: userwithcare
+        app: usewithcare
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -34,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: userwithcare-external
+    name: usewithcare-external
 spec:
   type: LoadBalancer
   selector:
-    app: userwithcare
+    app: usewithcare
   ports:
   - name: http
     port: 80
