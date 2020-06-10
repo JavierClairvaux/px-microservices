@@ -44,10 +44,10 @@ $ kubectl apply -f px-usewithcare.yml
 
 Then the external adress of the endpoint to run memEater and cpuBurner with:
 ```
-$ kubectl get service userwithcare-external  --watch
+$ kubectl get service usewithcare-external  --watch
 
 NAME                    TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
-userwithcare-external   LoadBalancer   10.3.245.111   34.68.211.163   80:31146/TCP   16m
+usewithcare-external   LoadBalancer   10.3.245.111   34.68.211.163   80:31146/TCP   16m
 ```
 
 Load balancers take a while to provision so it might take a couple of minutes.
