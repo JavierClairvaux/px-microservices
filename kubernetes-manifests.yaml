@@ -215,8 +215,7 @@ spec:
     spec:
       containers:
         - name: server
-          #image: gcr.io/google-samples/microservices-demo/frontend:v0.2.0
-          image: javier1/px-frontend:0.1
+          image: gcr.io/google-samples/microservices-demo/frontend:v0.2.0
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -254,8 +253,6 @@ spec:
             value: "adservice:9555"
           - name: ENV_PLATFORM
             value: "gcp"
-          - name: LATENCY
-            value: "true"
           # - name: DISABLE_TRACING
           #   value: "1"
           # - name: DISABLE_PROFILER
@@ -361,7 +358,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: javier1/px-productcatalogservice
+        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.0
         ports:
         - containerPort: 3550
         env:
@@ -381,13 +378,13 @@ spec:
         livenessProbe:
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:3550"]
-            #resources:
-            #  requests:
-            #    cpu: 100m
-            #    memory: 64Mi
-            #  limits:
-            #    cpu: 200m
-            #    memory: 128Mi
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -683,37 +680,3 @@ spec:
     port: 9555
     targetPort: 9555
 ---
-apiVersion: v1
-kind: Service
-metadata:
-    name: locust
-spec:
-  type: ClusterIP
-  selector:
-    app: locust
-  ports:
-    - name: webui
-      port: 80
-      targetPort: 8089
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-    name: locust
-spec:
-  selector:
-    matchLabels:
-      app: locust
-  template:
-    metadata:
-      labels:
-        app: locust
-      annotations:
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"
-    spec:
-      containers:
-      - name: locustloadgen
-        image: javier1/px-locust:latest
-        env:
-          - name: FRONTEND_ADDR
-            value: "frontend:80"
