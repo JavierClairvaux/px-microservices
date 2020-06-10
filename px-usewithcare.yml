@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+      name: userwithcare
+spec:
+  type: ClusterIP
+  selector:
+    app: userwithcare
+  ports:
+  - name: webui
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userwithcare
+spec:
+  selector:
+    matchLabels:
+      app: userwithcare
+  template:
+    metadata:
+      labels:
+        app: userwithcare
+      annotations:
+        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    spec:
+      containers:
+        - name: usewithcare
+          image: javier1/px-usewithcare:0.0.3
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: userwithcare-external
+spec:
+  type: LoadBalancer
+  selector:
+    app: userwithcare
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
